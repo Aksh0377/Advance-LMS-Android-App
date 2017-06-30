@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.axay.o2hleave.Main2Activity">
+<LinearLayout
+    android:id="@+id/frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:elevation="15dp"
+    android:orientation="horizontal"
+    >
+
+
+   <TextView
+       android:id="@+id/cl"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:layout_weight="1"
+       android:background="@color/o2hthird"
+       android:elevation="10dp"
+       android:onClick="onClick"
+       android:padding="20dp"
+       android:gravity="center"
+       android:text="CL"
+       android:textColor="@color/o2htextOne"
+       android:textSize="30sp" />
+
+   <TextView
+       android:id="@+id/pl"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:layout_weight="1"
+       android:background="@color/o2hforth"
+       android:onClick="onClick"
+       android:gravity="center"
+       android:text="PL"
+       android:textColor="@color/o2htextOne"
+       android:textSize="30sp" />
+
+   <TextView
+       android:id="@+id/sl"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:layout_weight="1"
+       android:background="@color/o2hfifth"
+       android:onClick="onClick"
+       android:text="SL"
+       android:gravity="center"
+       android:textColor="@color/o2htextOne"
+       android:textSize="30sp" />
+</LinearLayout>
+   <android.support.design.widget.BottomNavigationView
+       android:id="@+id/bottom_nevigation"
+       android:layout_width="match_parent"
+       android:layout_height="72dp"
+       android:layout_alignParentBottom="true"
+       app:itemIconTint="@drawable/tab_layout"
+       app:itemTextColor="@drawable/tab_layout"
+       design:menu="@menu/nevigation_menu"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       ></android.support.design.widget.BottomNavigationView>
+
+
+</RelativeLayout>

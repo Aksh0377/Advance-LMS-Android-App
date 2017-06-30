@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/demo3"
+
+    tools:context="com.example.axay.o2hleave.ApplyLeave">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/linearLayout2"
+    android:weightSum="1">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/leave_type"
+            android:text="LEAVE TYPE :  "
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/o2htextOne"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp" />
+
+    <Spinner
+        android:id="@+id/leaves"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="0dp"
+        android:textColorHint="@color/o2htextOne"
+        android:hint=" Type of leave"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@null"
+        android:textColor="@color/o2htextOne"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+    </LinearLayout>
+
+        android:layout_weight="0.54" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Separator"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/from_date"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:hint="From Date"
+            android:textColor="@color/o2htextOne"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:background="@null"
+            android:layout_weight="0.29"
+            android:textColorHint="@color/o2htextOne"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/Separator"/>
+        <TextView
+            android:id="@+id/to_date"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_weight="0.74"
+            android:background="@null"
+            android:textColor="@color/o2htextOne"
+            android:textColorHint="@color/o2htextOne"
+            android:hint="To Date"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_alignParentTop="true" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+
+        android:background="@color/Separator"/>
+    <EditText
+        android:id="@+id/reason"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="left"
+        android:background="@null"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout2"
+        android:textColor="@color/o2htextOne"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/o2htextOne"
+        android:hint="Reason"
+        android:layout_weight="1.03" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/Separator"/>
+
+</LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="78dp"
+        android:background="@color/o2hSecond"
+        android:textColor="@color/o2htextOne"
+        android:text="Save"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/o2hSecond"
+        android:textColor="@color/o2htextOne"
+        android:text="Apply"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/button2"
+        android:layout_alignRight="@+id/button2"
+        android:layout_alignEnd="@+id/button2" />
+
+
+</RelativeLayout>

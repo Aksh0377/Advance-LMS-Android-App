@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/demo3"
+    tools:context="com.example.axay.o2hleave.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/o2htextOne"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="108dp">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/login_screen_email_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/emailicon"
+        android:layout_gravity="center"
+        />
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:background="@null"
+
+            android:inputType="textPersonName"
+            android:hint="  Email" />
+
+
+</LinearLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/Separator"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/login_screen_password_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/password"
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/etpassword"
+            android:layout_width="284dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint=" Password"
+            android:textColor="@color/Separator"
+            android:background="@null"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="0.00"
+            android:background="@color/o2hSecond"
+            android:text="Sign in "
+            android:textAllCaps="true"
+            android:textColor="#ffff" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/GotoRegisterActivity"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:text="Create Account"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/o2htextOne" />
+
+    <Button
+        android:id="@+id/ForgotPassword"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="forgot password"
+        android:textAllCaps="false"
+        android:textColor="@color/o2htextOne" />
+
+</RelativeLayout>

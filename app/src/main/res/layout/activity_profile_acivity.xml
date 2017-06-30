@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.axay.o2hleave.Profile_fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/o2hOne"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="197.50dp"
+        android:background="@drawable/demo1"
+        android:orientation="horizontal"
+        android:layout_below="@+id/toolbar3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/selifeicon"
+            android:layout_alignBottom="@+id/select_profile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="9dp" />
+
+        <ImageButton
+            android:id="@+id/select_profile"
+            style="@android:style/Widget.DeviceDefault.Light.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginRight="75dp"
+            android:layout_weight="0.35"
+            android:background="@null"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/layout1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp">
+
+
+
+            <EditText
+                android:id="@+id/edit_ful_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/pesron_symbol"
+                android:hint="full name"
+                android:layout_gravity="center" />
+
+
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:hint="Email"
+                android:id="@+id/edit_email"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/email_black"
+                android:layout_weight="0.73" />
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/edit_employee_code"
+                android:hint="Employee code"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/short_text"
+                android:layout_weight="0.76" />
+
+
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/edit_designation"
+                android:hint="Designation"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/designation"
+                android:layout_weight="0.75" />
+
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/edit_password"
+                android:hint="password"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/lock"
+                android:layout_weight="0.75" />
+
+
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/o2hSecond"
+        android:textColor="@color/o2htextOne"
+        android:text="Apply"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

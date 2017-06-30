@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="o2hSecond">#d667cd</color>
+    <color name="o2hOne">#186bb4</color>
+    <color name="o2htextOne">#ffffff</color>
+    <color name="Separator"> #c0c0c0</color>
+    <color name="o2hthird"> #6563a4</color>
+    <color name="o2hforth"> #8c88ff</color>
+    <color name="o2hfifth"> #50d2c2</color>
+
+
+
+
+</resources>
