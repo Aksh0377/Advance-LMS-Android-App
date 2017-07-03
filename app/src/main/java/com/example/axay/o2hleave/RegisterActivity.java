@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -39,9 +41,10 @@ Button register;
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
      awesomeValidation.addValidation(this, R.id.fullname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-        awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS+"", R.string.emailerror);
-       // awesomeValidation.addValidation(this, R.id.password, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
-       // awesomeValidation.addValidation(this, R.id.employee_code, "^[2-9]{2}[0-9]{8}$", R.string.empoyeecodeerror);
+        awesomeValidation.addValidation(this, R.id.email, "[a-zA-Z0-9._-]+@o2h.com", R.string.emailerror);
+        awesomeValidation.addValidation(this, R.id.password, "((?=.*[a-z]).{6,20})", R.string.passworderror);
+        awesomeValidation.addValidation(this, R.id.employee_code, "((?=.*\\d).{1,4})", R.string.empoyeecodeerror);
+        awesomeValidation.addValidation(this, R.id.designation, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.empoyeecodeerror);
 
 
         register.setOnClickListener( this);
@@ -61,6 +64,8 @@ Button register;
 
     public void onClick(View view) {
         if (view == register) {
+
+
             submitForm();
         }
     }

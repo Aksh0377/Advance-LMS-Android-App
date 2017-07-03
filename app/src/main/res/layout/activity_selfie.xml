@@ -7,13 +7,15 @@
     android:background="@color/o2hOne"
     tools:context="com.example.axay.o2hleave.SelfieActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/selfie"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
-        android:background="@drawable/selfie"
+       android:src="@drawable/selfie"
+        app:civ_border_width="4dp"
+        app:civ_border_color="@color/o2hSecond"
         android:layout_marginTop="130dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -26,8 +28,8 @@
         android:textSize="50sp"
        android:textColor="@color/o2htextOne"
         android:text="selfie"
-        android:layout_marginTop="33dp"
-        android:layout_alignTop="@+id/textView2"
+        android:layout_marginTop="102dp"
+        android:layout_below="@+id/selfie"
         android:layout_centerHorizontal="true" />
     <TextView
         android:id="@+id/textView2"
@@ -38,9 +40,9 @@
         android:textSize="25sp"
         android:textColor="@color/o2htextOne"
         android:text="Click a "
-        android:layout_below="@+id/imageButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        android:layout_marginBottom="60dp"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/skip"

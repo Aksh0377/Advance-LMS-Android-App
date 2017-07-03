@@ -29,12 +29,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/selifeicon"
+            android:src="@drawable/email_black"
+            app:civ_border_width="4dp"
+            app:civ_border_color="@color/o2hOne"
             android:layout_alignBottom="@+id/select_profile"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="9dp" />

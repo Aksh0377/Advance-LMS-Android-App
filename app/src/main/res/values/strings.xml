@@ -1,15 +1,18 @@
 <resources>
     <string name="app_name">O2hleave</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="App_title">O2h</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nameerror">name error</string>
     <string name="emailerror">enter valid email</string>
-    <string name="passworderror">enter correct password</string>
+    <string name="passworderror">password length should be within 6 to 20 characters</string>
     <string name="employeecoderror">enter valid  employee code</string>
     <string name="employeecodeerror">enter valid employee code</string>
     <string name="empoyeecodeerror">enter valid employee code</string>
+    <string name="desognationerror">Designation should not be null</string>
+
     <string-array name="leave_type">
         <item>casual leave</item>
         <item>personal leave</item>

@@ -3,14 +3,18 @@ package com.example.axay.o2hleave;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,7 +72,21 @@ public class ApplyLeave extends AppCompatActivity {
 
             }
         });
-        //
+
+
+        //  Back button in toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.o2htextOne));
+        final Drawable upArrow = getResources().getDrawable(R.drawable.back_arrow);
+        upArrow.setColorFilter(getResources().getColor(R.color.o2htextOne), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        }//
 
 
 
@@ -111,10 +129,10 @@ public class ApplyLeave extends AppCompatActivity {
                 int day=calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog=new DatePickerDialog(ApplyLeave.this,
-                        android.R.style.Theme_Holo_Dialog_MinWidth,
+                      R.style.DatePickerDialogTheme,
                         todatelistener,year,month,day);
 
-                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 datePickerDialog.show();
             }
         });
@@ -129,5 +147,13 @@ public class ApplyLeave extends AppCompatActivity {
                 ToDate.setText(date);
             }
         };
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
