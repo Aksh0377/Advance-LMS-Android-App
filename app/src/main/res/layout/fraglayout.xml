@@ -11,11 +11,23 @@
         android:layout_height="wrap_content"
         android:background="@color/Separator"></android.support.v7.widget.SearchView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mRecyerID"
+<ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ></android.support.v7.widget.RecyclerView>
+        android:drawSelectorOnTop="false"
+        android:layout_weight="5"
+
+        >
+
+</ListView>
+
+<Button
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Apply"
+    android:layout_weight="0.5"/>
 
 
 

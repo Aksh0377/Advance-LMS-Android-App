@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Main2Activity extends AppCompatActivity  implements Profile_fragment.OnFragmentInteractionListener,Recepients_list_fragment.OnFragmentInteractionListener {
+public class Main2Activity extends AppCompatActivity  implements Profile_fragment.OnFragmentInteractionListener {
     BottomNavigationView bottomNavigationView;
   TextView cl,sl,pl;
 
