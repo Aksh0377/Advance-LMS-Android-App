@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,12 @@ public class SelfieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+
+                } else {
+                    cameraIntent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
+                }
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
@@ -55,6 +62,12 @@ public class SelfieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
+
+                } else {
+                    cameraIntent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
+                }
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
@@ -66,6 +79,7 @@ public class SelfieActivity extends AppCompatActivity {
             imageView.setImageBitmap(photo);
             Intent intent=new Intent(SelfieActivity.this,RegisterActivity.class);
             intent.putExtra("photo",photo);
+
             startActivity(intent);
         }
     }

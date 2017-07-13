@@ -4,6 +4,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,12 +29,12 @@
         <activity android:name=".Main2Activity" />
         <activity
             android:name=".ApplyLeave"
-            android:parentActivityName=".Main2Activity">
+            android:parentActivityName=".Main3Activity">
 
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.axay.o2hleave.Main2Activity" />
+                android:value="com.example.axay.o2hleave.Main3Activity" />
         </activity>
         <activity android:name=".Settings" />
         <activity android:name=".profileAcivity" />

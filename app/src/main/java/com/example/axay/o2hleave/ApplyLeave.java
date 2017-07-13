@@ -195,12 +195,12 @@ public class ApplyLeave extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         final Drawable upArrow = getResources().getDrawable(R.drawable.back_arrow);
         upArrow.setColorFilter(getResources().getColor(R.color.o2htextOne), PorterDuff.Mode.SRC_ATOP);
-        getSupportActionBar().setHomeAsUpIndicator(upArrow);        if(getSupportActionBar()!=null)
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
         {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             Intent intent=new Intent();
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
 
 
         }
@@ -214,6 +214,7 @@ public class ApplyLeave extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+
                 Calendar calendar= Calendar.getInstance();
                 int year=calendar.get(Calendar.YEAR);
                 int month=calendar.get(Calendar.MONTH);
@@ -316,7 +317,8 @@ public class ApplyLeave extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
         {
-            finish();
+            Intent intent =new Intent(ApplyLeave.this,Main3Activity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
