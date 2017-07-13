@@ -114,5 +114,14 @@
         android:layout_alignRight="@+id/edit_recepients"
         android:layout_alignEnd="@+id/edit_recepients" />
 
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:hint="TextView" />
+
 
 </RelativeLayout>

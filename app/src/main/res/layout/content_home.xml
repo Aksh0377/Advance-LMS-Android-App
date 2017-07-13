@@ -4,38 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/demo3"
+    android:background="@drawable/o2hleave_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.axay.o2hleave.HomeActivity"
     tools:showIn="@layout/activity_home">
 
     <Button
         android:id="@+id/home_register"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@drawable/btn_bg_normal"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:background="@color/o2hOne"
-        android:layout_weight="1"
-        android:text="SignUp"
-        android:textColor="#ffffff"/>
+        android:textStyle="bold"
+        android:textColor="@color/o2hOne"
+        android:text="Sign Up"
+        android:layout_marginTop="76dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/home_login"
+        android:layout_alignStart="@+id/home_login" />
+
+   <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Already have an Account?"
+    android:textColor="@color/o2htextOne"
+       android:layout_marginTop="27dp"
+       android:id="@+id/textView2"
+       android:layout_below="@+id/home_register"
+       android:layout_alignRight="@+id/textView3"
+       android:layout_alignEnd="@+id/textView3" />
 
     <Button
         android:id="@+id/home_login"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/o2hSecond"
+        android:background="@drawable/btn_bg_white_border"
         android:layout_weight="1"
-        android:text="SignIn"
-        android:textColor="#ffffff"
-        android:layout_toLeftOf="@+id/home_register"
-        android:layout_toStartOf="@+id/home_register" />
+        android:text="Sign In"
+        android:textColor="@color/o2htextOne"
+        android:textStyle="bold"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/o2hwhite_trim"
+        android:layout_marginTop="132dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/o2htextOne"
+        android:text="Leave management App"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
 
 
 </RelativeLayout>

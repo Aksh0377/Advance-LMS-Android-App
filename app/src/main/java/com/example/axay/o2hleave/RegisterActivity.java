@@ -1,12 +1,17 @@
 package com.example.axay.o2hleave;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +41,18 @@ Button register;
         Bitmap bitmap= (Bitmap)this.getIntent().getParcelableExtra("photo");
         ImageView profile_pic=(ImageView)findViewById(R.id.register_profile);
         profile_pic.setImageBitmap(bitmap);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.o2htextOne));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        final Drawable upArrow = getResources().getDrawable(R.drawable.back_arrow);
+        upArrow.setColorFilter(getResources().getColor(R.color.o2htextOne), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);        if(getSupportActionBar()!=null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        }
 
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -55,11 +72,14 @@ Button register;
         //if this becomes true that means validation is successfull
         if (awesomeValidation.validate()) {
             Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(RegisterActivity.this,Main2Activity.class);
+            Intent intent=new Intent(RegisterActivity.this,Main3Activity.class);
             startActivity(intent);
+            finish();
             //process the data further
         }
     }
+
+
 
 
     public void onClick(View view) {
@@ -67,6 +87,24 @@ Button register;
 
 
             submitForm();
+
+            SharedPreferences sharedPreferences =getApplicationContext().getSharedPreferences("UserData",MODE_PRIVATE);
+            SharedPreferences.Editor editor =sharedPreferences.edit();
+            editor.putString("name",full_name.getText().toString());
+            editor.putString("e_mail",email.getText().toString());
+            editor.putString("password",password.getText().toString());
+            editor.putString("employee_code",employee_code.getText().toString());
+            editor.putString("desig.",designation.getText().toString());
+            editor.commit();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

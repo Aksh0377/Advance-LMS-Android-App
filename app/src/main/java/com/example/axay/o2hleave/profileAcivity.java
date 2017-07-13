@@ -34,6 +34,7 @@ public class profileAcivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.o2htextOne));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         final Drawable upArrow = getResources().getDrawable(R.drawable.back_arrow);
         upArrow.setColorFilter(getResources().getColor(R.color.o2htextOne), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setHomeAsUpIndicator(upArrow);        if(getSupportActionBar()!=null)

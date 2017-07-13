@@ -26,10 +26,24 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".ApplyLeave" />
+        <activity
+            android:name=".ApplyLeave"
+            android:parentActivityName=".Main2Activity">
+
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.axay.o2hleave.Main2Activity" />
+        </activity>
         <activity android:name=".Settings" />
         <activity android:name=".profileAcivity" />
-        <activity android:name=".forgot_password"></activity>
+        <activity android:name=".forgot_password" />
+        <activity android:name=".LeaveHistory" />
+        <activity
+            android:name=".Main3Activity"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".demoData"></activity>
     </application>
 
 </manifest>

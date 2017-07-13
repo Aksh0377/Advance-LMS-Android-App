@@ -37,7 +37,12 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-
+           leave_history.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   OnclickLeaveHistory();
+               }
+           });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_seetings);
@@ -50,8 +55,8 @@ public class Settings extends AppCompatActivity {
         {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         }
+
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +92,11 @@ public class Settings extends AppCompatActivity {
     public  void Onclicklogout()
     {
         Intent intent=new Intent(Settings.this,LoginActivity.class);
+        startActivity(intent);
+    }
+    public  void OnclickLeaveHistory()
+    {
+        Intent intent=new Intent(Settings.this,LeaveHistory.class);
         startActivity(intent);
     }
 

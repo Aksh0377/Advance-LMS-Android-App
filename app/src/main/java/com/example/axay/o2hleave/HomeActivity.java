@@ -40,10 +40,12 @@ public class HomeActivity extends AppCompatActivity {
     {
         Intent intent=new Intent(HomeActivity.this,LoginActivity.class);
         startActivity(intent);
+        finish();
     }
     public  void OnclickRegister()
     {
         Intent intent=new Intent(HomeActivity.this,SelfieActivity.class);
         startActivity(intent);
+        finish();
     }
 }

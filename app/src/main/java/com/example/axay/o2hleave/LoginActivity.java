@@ -1,6 +1,7 @@
 package com.example.axay.o2hleave;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,12 +47,30 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
+        //shared prefrence
+
+        SharedPreferences sharedPreferences=getApplicationContext().getSharedPreferences("UserData",MODE_PRIVATE);
+        String Email= sharedPreferences.getString("e_mail","null");
+        String pass= sharedPreferences.getString("password","null");
+        if(Email.equals("null") ||pass.equals("null") )
+        {
+            Toast.makeText(getApplicationContext(),"notfoumd",Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            email.setText(Email);
+            password.setText(pass);
+        }
+
     }
 
     public void Onclicksignin() {
         if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-            Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
+            Intent intent = new Intent(LoginActivity.this, Main3Activity.class);
             startActivity(intent);
+            finish();
             //correcct password
         } else {
             Toast.makeText(getApplicationContext(), "wrong email/password", Toast.LENGTH_LONG).show();

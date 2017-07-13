@@ -23,21 +23,29 @@ public class SelfieActivity extends AppCompatActivity {
      TextView textView;
     private static final int CAMERA_REQUEST = 1888;
 
-    Button skip;
+    Button skip,get_start;
     ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selfie);
         skip=(Button)findViewById(R.id.skip);
-        skip.setOnClickListener(new View.OnClickListener() {
+       skip.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               OnclickRegister();
+           }
+       });
+        textView=(TextView)findViewById(R.id.textView);
+        get_start=(Button)findViewById(R.id.get_started);
+        get_start.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                OnclickRegister();
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
-        textView=(TextView)findViewById(R.id.textView);
-
         Typeface face= Typeface.createFromAsset(getAssets(), "fonts/o2hfont.ttf");
         textView.setTypeface(face);
         this.imageView = (ImageView)this.findViewById(R.id.selfie);

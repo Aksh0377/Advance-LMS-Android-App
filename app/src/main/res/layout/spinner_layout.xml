@@ -5,7 +5,9 @@
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/o2htextOne"
         android:gravity="center"
+        android:padding="10dp"
+        android:drawableRight="@drawable/drop_icon"
+
         android:textSize="20sp"
         />

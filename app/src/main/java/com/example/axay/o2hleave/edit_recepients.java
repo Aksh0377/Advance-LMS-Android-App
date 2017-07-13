@@ -5,11 +5,18 @@ package com.example.axay.o2hleave;
  */
 
 import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,52 +27,100 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-
+import android.widget.Toast;
 import com.example.axay.o2hleave.mrecycleView.MyAdapter;
+import java.util.ArrayList;
 
 
 /**
- * Created by Oclemmy on 4/23/2016 for ProgrammingWizards Channel.
+ * created  by Axay soni
+ *
+ * In this we have used ListView.CHOICE_MODE_MULTIPLE in listview to select items rather than checkboxes.
  */
 public class edit_recepients extends DialogFragment {
 
     ListView listView;
     ArrayAdapter<String> arrayAdapter;
     Button Apply;
+    Context context;
+    String[] recepients = {"nitu@o2h.com","nilesh@o2h.com", "bhargavi@o2h.com", "krishana@o2h.com", "chris@visibly.io", "akshay@o2h.com", "sujith@02h.com", "yaamin@o2h.com", "juned@o2h.com", "vipul@o2h.com", "Archa@o2h.com"
+            , "prashant@o2h.com", "neel@o2h.com", "sunil@o2h.com"};
 
-    String[] tvshows = {"Crisis", "Blindspot", "BlackList", "Game of Thrones", "Gotham", "Banshee", "fnkfe", "dkjkfnw", "jfhdjhbcf", "dkckljw"
-            , "fjhwckfjqw", "efcjl;fce", "eckfhnw"};
-    //RecyclerView rv;
-   // MyAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fraglayout, container);
 
         listView=(ListView)rootView.findViewById(R.id.listview);
-       // rv = (RecyclerView) rootView.findViewById(R.id.mRecyerID);
-        SearchView searchView=(SearchView)rootView.findViewById(R.id.search_view);
-      //  rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        Apply=(Button)rootView.findViewById(R.id.apply);
 
-        //ADAPTER
-       // adapter = new MyAdapter(this.getActivity(), tvshows);
-        arrayAdapter= new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_list_item_multiple_choice,tvshows);
+        Apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                SparseBooleanArray checked = listView.getCheckedItemPositions();
+                ArrayList<String> selectedItems = new ArrayList<String>();
+                for (int i = 0; i < checked.size(); i++) {
+                    // Item position in adapter
+                    int position = checked.keyAt(i);
+                    // Add sport if it is checked i.e.) == TRUE!
+                    if (checked.valueAt(i))
+                        selectedItems.add(arrayAdapter.getItem(position));
+                }
+
+                String[] outputStrArr = new String[selectedItems.size()];
+
+                for (int i = 0; i < selectedItems.size(); i++) {
+                    outputStrArr[i] = selectedItems.get(i);
+                }
+
+                Intent intent = new Intent(getActivity(),
+                        ApplyLeave.class);
+
+                // Create a bundle object
+                Bundle b = new Bundle();
+                b.putStringArray("selectedItems", outputStrArr);
+
+                // Add the bundle to the intent.
+                intent.putExtras(b);
+
+                // start the ResultActivity
+                PendingIntent pendingIntent =
+                        TaskStackBuilder.create(getActivity())
+                                // add all of DetailsActivity's parents to the stack,
+                                // followed by DetailsActivity itself
+                                .addNextIntentWithParentStack(intent)
+                                .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity());
+                builder.setContentIntent(pendingIntent);
+                startActivity(intent);
+
+
+
+            }
+        });
+
+
+
+
+        //setting adapter for the item in the list view
+        arrayAdapter= new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_list_item_multiple_choice,recepients);
         listView.setAdapter(arrayAdapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        //end_listview
 
-       // rv.setAdapter(adapter);
 
+        //search_view used in the edit_recepients list of recepients
+        SearchView searchView=(SearchView)rootView.findViewById(R.id.search_view);
         this.getDialog().setTitle("Edit Recepients");
         searchView.setQueryHint("search");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 return false;
-            }
+                }
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -73,9 +128,17 @@ public class edit_recepients extends DialogFragment {
           return false;
             }
         });
+        //end_search_view
 
 
         return rootView;
+
+
     }
+
+
+
+
+
 }
 

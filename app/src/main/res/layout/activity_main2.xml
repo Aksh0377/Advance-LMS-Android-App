@@ -12,58 +12,119 @@
     android:layout_height="500dp"
     android:elevation="15dp"
     android:orientation="horizontal"
-    >
+    android:layout_marginTop="14dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:weightSum="1">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/o2hOne"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="5dp"
+        android:elevation="6dp"
+        android:layout_weight="0.2">
 
    <TextView
        android:id="@+id/cl"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
        android:layout_weight="1"
-       android:background="@color/o2hthird"
+       android:background="@color/o2hOne"
        android:elevation="10dp"
+       android:text="7"
+       android:textStyle="bold"
+       android:gravity="center"
        android:onClick="onClick"
        android:padding="20dp"
-       android:gravity="center"
-       android:text="CL"
        android:textColor="@color/o2htextOne"
        android:textSize="30sp" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Casual Leave"
+           android:textSize="15sp"
+           android:padding="5dp"
+           android:layout_gravity="center"
+           android:textColor="@color/o2htextOne"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/o2hforth"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:elevation="6dp">
 
    <TextView
        android:id="@+id/pl"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
        android:layout_weight="1"
+       android:elevation="6dp"
        android:background="@color/o2hforth"
+       android:textStyle="bold"
        android:onClick="onClick"
        android:gravity="center"
-       android:text="PL"
+       android:text="21"
+       android:padding="20dp"
        android:textColor="@color/o2htextOne"
        android:textSize="30sp" />
 
+        <TextView
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Leave"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:textColor="@color/o2htextOne"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/o2hfifth"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="1dp"
+        android:elevation="6dp"
+        android:layout_weight="0.60">
+
    <TextView
        android:id="@+id/sl"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
        android:layout_weight="1"
+       android:elevation="6dp"
        android:background="@color/o2hfifth"
        android:onClick="onClick"
-       android:text="SL"
+       android:text="7"
+       android:padding="20dp"
+       android:textStyle="bold"
        android:gravity="center"
        android:textColor="@color/o2htextOne"
        android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sick Leave"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/o2htextOne"/>
+
+    </LinearLayout>
 </LinearLayout>
-   <android.support.design.widget.BottomNavigationView
-       android:id="@+id/bottom_nevigation"
-       android:layout_width="match_parent"
-       android:layout_height="72dp"
-       android:layout_alignParentBottom="true"
-       app:itemIconTint="@drawable/tab_layout"
-       app:itemTextColor="@drawable/tab_layout"
-       design:menu="@menu/nevigation_menu"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true"
-       ></android.support.design.widget.BottomNavigationView>
+
 
 
 </RelativeLayout>
