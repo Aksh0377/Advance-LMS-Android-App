@@ -224,6 +224,7 @@ public class ApplyLeave extends AppCompatActivity {
                 DatePickerDialog datePickerDialog=new DatePickerDialog(ApplyLeave.this,
                         R.style.DatePickerDialogTheme,
                         fromdatelistener,year,month,day);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 datePickerDialog.show();
@@ -265,6 +266,7 @@ public class ApplyLeave extends AppCompatActivity {
                 DatePickerDialog datePickerDialog=new DatePickerDialog(ApplyLeave.this,
                       R.style.DatePickerDialogTheme,
                         todatelistener,year,month,day);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 datePickerDialog.show();
@@ -329,7 +331,7 @@ public class ApplyLeave extends AppCompatActivity {
     {
         //Difference in milliseconds:
         long difference = date2.getTime()-date1.getTime();
-         days = (int) (difference / (1000 * 60 * 60 * 24));
+         days = (int) (difference / (1000 * 60 * 60 * 24)+1);
          half_day= (float) (days-0.5);
          quarter_day= (float) (days-0.75);
 
