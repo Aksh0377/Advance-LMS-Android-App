@@ -16,9 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawSelectorOnTop="false"
-        android:layout_weight="5"
-
-        >
+        android:layout_weight="5">
 
 </ListView>
 
@@ -30,7 +28,5 @@
     android:background="@color/o2hOne"
     android:textColor="@color/o2htextOne"
     android:layout_weight="0.5"/>
-
-
 
 </LinearLayout>

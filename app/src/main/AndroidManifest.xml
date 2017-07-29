@@ -3,6 +3,7 @@
     package="com.example.axay.o2hleave">
 
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
 
     <application

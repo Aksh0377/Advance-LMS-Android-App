@@ -10,20 +10,18 @@
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="197.50dp"
-
+        android:layout_height="160.50dp"
         android:orientation="horizontal"
-        android:layout_above="@+id/fullname"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/toolbar2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="12dp">
+        android:layout_alignParentStart="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/register_profile"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:src="@drawable/ic_person_black_24dp"
             app:civ_border_color="@color/o2hOne"
             app:civ_border_width="3dp" />
@@ -57,14 +55,14 @@
 
     <Button
         android:id="@+id/register"
+        android:layout_marginBottom="14dp"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="@drawable/login_button"
         android:textColor="@color/o2htextOne"
         android:text="CREATE"
         android:textAllCaps="true"
-        android:layout_marginBottom="7dp"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/designation"
         android:layout_alignStart="@+id/designation" />
@@ -72,19 +70,19 @@
     <EditText
         android:id="@+id/fullname"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Name"
         android:gravity="center"
         android:background="@drawable/btn_bg_normal"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/layout1"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:hint="e.g. example@o2h.com"
         android:background="@drawable/btn_bg_normal"
         android:layout_marginTop="10dp"
@@ -100,7 +98,7 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:ems="10"
         android:gravity="center"
         android:layout_marginTop="10dp"
@@ -114,7 +112,7 @@
     <EditText
         android:id="@+id/employee_code"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:ems="10"
         android:gravity="center"
         android:layout_marginTop="10dp"
@@ -126,19 +124,45 @@
         android:layout_alignLeft="@+id/password"
         android:layout_alignStart="@+id/password" />
 
+
+
     <EditText
         android:id="@+id/designation"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:ems="10"
+        android:layout_marginTop="11dp"
         android:gravity="center"
         android:inputType="textPersonName"
         android:hint="Designation"
-
         android:background="@drawable/btn_bg_normal"
+        android:layout_below="@+id/xml_team_spinner"
+        android:layout_alignLeft="@+id/xml_team_spinner"
+        android:layout_alignStart="@+id/xml_team_spinner" />
+
+    <Spinner
+        android:id="@+id/xml_dept_spinner"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:background="@drawable/btn_bg_normal"
+        android:gravity="center"
         android:layout_below="@+id/employee_code"
         android:layout_alignLeft="@+id/employee_code"
-        android:layout_alignStart="@+id/employee_code"
-        android:layout_marginTop="10dp" />
+        android:layout_alignStart="@+id/employee_code" />
+
+    <Spinner
+        android:id="@+id/xml_team_spinner"
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:background="@drawable/btn_bg_normal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="visible"
+        android:layout_below="@+id/xml_dept_spinner"
+        android:layout_alignLeft="@+id/xml_dept_spinner"
+        android:layout_alignStart="@+id/xml_dept_spinner" />
 
 </RelativeLayout>

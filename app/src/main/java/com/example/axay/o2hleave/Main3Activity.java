@@ -138,8 +138,8 @@ public class Main3Activity extends AppCompatActivity {
                     return main2Activity;
 
                 case 1:
-                    demo dem=new demo();
-                    return dem;
+                    LeaveHistory leaveHistory=new LeaveHistory();
+                    return leaveHistory;
                 case 2:
                  default:
                      return null;
