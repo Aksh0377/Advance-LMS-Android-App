@@ -56,7 +56,7 @@
         <EditText
             android:id="@+id/edit_ful_name"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:drawableLeft="@drawable/pesron_symbol"
             android:drawablePadding="20dp"
@@ -69,7 +69,7 @@
         <EditText
             android:id="@+id/edit_email"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_weight="0.73"
             android:drawableLeft="@drawable/email_black"
@@ -83,7 +83,7 @@
         <EditText
             android:id="@+id/edit_employee_code"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_weight="0.76"
 
             android:backgroundTint="@color/o2hOne"
@@ -93,10 +93,23 @@
             android:textColorLink="@color/o2hOne" />
 
 
+        <Spinner
+            android:id="@+id/edit_spinner_dept"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <Spinner
+            android:id="@+id/edit_spinner_team"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            />
+
+
+
         <EditText
             android:id="@+id/edit_designation"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_weight="0.75"
             android:drawableLeft="@drawable/designation"
             android:drawablePadding="20dp"
@@ -108,7 +121,7 @@
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_weight="0.75"
             android:drawableLeft="@drawable/lock"
             android:drawablePadding="20dp"
@@ -119,9 +132,9 @@
         </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/update"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="@color/o2hOne"
         android:textColor="@color/o2htextOne"
         android:text="Apply"
