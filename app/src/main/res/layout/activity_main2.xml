@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,10 +7,12 @@
     android:layout_height="match_parent"
     xmlns:design="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.axay.o2hleave.Main2Activity">
+
+
 <LinearLayout
     android:id="@+id/frame_layout"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="150dp"
     android:elevation="15dp"
     android:orientation="horizontal"
     android:layout_marginTop="14dp"
@@ -28,7 +31,7 @@
         android:elevation="6dp"
         android:layout_weight="0.2">
 
-   <TextView
+      <TextView
        android:id="@+id/cl"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -123,7 +126,45 @@
             android:textColor="@color/o2htextOne"/>
 
     </LinearLayout>
+
 </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frame_layout"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Pending Leaves"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_PendingLeaves"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text=" Leave Requests"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_LeaveRequests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+    </ScrollView>
+
 
 
 

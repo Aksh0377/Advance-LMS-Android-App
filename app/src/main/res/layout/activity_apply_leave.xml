@@ -27,7 +27,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/leave_type"
@@ -41,7 +42,7 @@
 
             <Spinner
                 android:id="@+id/leaves"
-                android:layout_width="200dp"
+                android:layout_width="133dp"
                 android:layout_height="70dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -52,7 +53,8 @@
                 android:hint=" Type of leave"
                 android:textColor="@color/o2htextOne"
                 android:textColorHint="@color/o2htextOne"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_weight="0.78" />
         </LinearLayout>
 
         android:layout_weight="0.54" />
@@ -102,12 +104,20 @@
                 android:layout_height="match_parent"
                 android:background="@color/Separator" />
 
-
+            <TextView
+                android:id="@+id/total_leave_days"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                android:layout_alignParentTop="true"
+                android:layout_weight="0.29"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="Days"
+                android:textSize="15sp" />
             <Spinner
                 android:id="@+id/float_days_count"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ></Spinner>
+                android:layout_height="wrap_content"></Spinner>
         </LinearLayout>
 
         <View

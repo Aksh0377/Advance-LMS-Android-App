@@ -62,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     String selected_dept_id=null;
     String selected_team_id;
     Bitmap bitmap;
+    String encodedImage;
     //Volley RequestQue
     RequestQueue requestQueue_dept,getRequestQueue_team,requestQueue_register;
 
@@ -117,7 +118,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         register=(Button)findViewById(R.id.register);
 
 
-          bitmap = (Bitmap) this.getIntent().getParcelableExtra("photo");
+
+            bitmap = (Bitmap) this.getIntent().getParcelableExtra("photo");
+
 
 
 
@@ -225,7 +228,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             final String user_designation = designation.getText().toString().trim();
 
 
-            String avatar=null;
+            String avatar="";
 
             if(avatar!=null)
             {
@@ -250,7 +253,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             params.put(KEY_PASSWORD, user_password);
             params.put(KEY_EMAIL, email);
             params.put(KEY_DESIGNATION, user_designation);
-            params.put(AVTAR, avatar);
+            params.put(AVTAR, getStringImage(bitmap));
             params.put(KEY_TEAM, team);
             params.put(KEY_DEPARTMENT, department);
             params.put(EMPLOYEE_CODE, emp_code);
@@ -449,12 +452,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
 public String getStringImage(Bitmap bmp){
+
+    if(bmp !=null)
+      {
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+       encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
         }
+
+        else
+    {
+        encodedImage="";
+
+    }
+    return encodedImage;
+}
 
 
 
