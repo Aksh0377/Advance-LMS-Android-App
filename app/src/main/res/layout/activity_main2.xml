@@ -12,47 +12,46 @@
 <LinearLayout
     android:id="@+id/frame_layout"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:elevation="15dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_marginTop="14dp"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:weightSum="1">
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:weightSum="3"
+   >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/o2hOne"
         android:orientation="vertical"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="5dp"
-        android:elevation="6dp"
-        android:layout_weight="0.2">
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1"
+        >
 
-      <TextView
-       android:id="@+id/cl"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       android:background="@color/o2hOne"
-       android:elevation="10dp"
-       android:text="7"
-       android:textStyle="bold"
-       android:gravity="center"
-       android:onClick="onClick"
-       android:padding="20dp"
-       android:textColor="@color/o2htextOne"
-       android:textSize="30sp" />
+        <TextView
+            android:id="@+id/cl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/o2hOne"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text="7"
+            android:layout_gravity="center"
+            android:textColor="@color/o2htextOne"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold" />
 
        <TextView
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Casual Leave"
-           android:textSize="15sp"
+           android:text="Casual "
+           android:elevation="15dp"
+           android:textSize="@dimen/h4"
            android:padding="5dp"
-           android:layout_gravity="center"
+           android:textAlignment="center"
            android:textColor="@color/o2htextOne"/>
 
     </LinearLayout>
@@ -61,32 +60,35 @@
         android:layout_height="wrap_content"
         android:background="@color/o2hforth"
         android:orientation="vertical"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1"
         android:elevation="6dp">
 
-   <TextView
-       android:id="@+id/pl"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       android:elevation="6dp"
-       android:background="@color/o2hforth"
-       android:textStyle="bold"
-       android:onClick="onClick"
-       android:gravity="center"
-       android:text="21"
-       android:padding="20dp"
-       android:textColor="@color/o2htextOne"
-       android:textSize="30sp" />
+        <TextView
+            android:id="@+id/pl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/o2hforth"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text="7"
+            android:layout_gravity="center"
+            android:textColor="@color/o2htextOne"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+             />
 
         <TextView
             android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Personal Leave"
-            android:textSize="15sp"
+            android:text="Personal "
+            android:elevation="5dp"
+            android:textSize="@dimen/h4"
             android:layout_gravity="center"
+            android:textAlignment="center"
             android:textColor="@color/o2htextOne"/>
 
     </LinearLayout>
@@ -95,31 +97,32 @@
         android:layout_height="wrap_content"
         android:background="@color/o2hfifth"
         android:orientation="vertical"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginRight="1dp"
+        android:layout_weight="1"
         android:elevation="6dp"
-        android:layout_weight="0.60">
+       >
 
-   <TextView
-       android:id="@+id/sl"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       android:elevation="6dp"
-       android:background="@color/o2hfifth"
-       android:onClick="onClick"
-       android:text="7"
-       android:padding="20dp"
-       android:textStyle="bold"
-       android:gravity="center"
-       android:textColor="@color/o2htextOne"
-       android:textSize="30sp" />
+        <TextView
+            android:id="@+id/sl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/o2hfifth"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text="7"
+            android:layout_gravity="center"
+            android:textColor="@color/o2htextOne"
+            android:textSize="@dimen/h2"
+            android:textStyle="bold"
+            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sick Leave"
-            android:textSize="15sp"
+            android:text="Sick "
+            android:textSize="@dimen/h4"
             android:padding="5dp"
             android:gravity="center"
             android:layout_gravity="center"
@@ -130,37 +133,80 @@
 </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/frame_layout"
         >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="Pending Leaves"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView_PendingLeaves"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </android.support.v7.widget.RecyclerView>
+            android:padding="7dp"
+            android:textSize="@dimen/h3"
+            android:background="@color/o2htextOne"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text=" Leave Requests"
+
+            />
         <TextView
+            android:id="@+id/no_leave_request"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:text=" Leave Requests"/>
+            android:textSize="@dimen/h3"
+            android:padding="40dp"
+            android:visibility="gone"
+            android:drawableRight="@drawable/sad"
+            android:text="You Have no Leave Requests"
+            />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_LeaveRequests"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp">
         </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" Approval Pending Leaves"
+            android:padding="7dp"
+            android:textAlignment="center"
+            android:textSize="@dimen/h3"
+            android:textStyle="bold"
+            android:background="@color/o2htextOne"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"/>
+        <TextView
+            android:id="@+id/no_pending_leaves"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/h3"
+            android:padding="40dp"
+            android:visibility="gone"
+            android:drawableRight="@drawable/sad"
+            android:text="You Have no Pending leaves"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_PendingLeaves"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+         >
+        </android.support.v7.widget.RecyclerView>
+
 
     </LinearLayout>
     </ScrollView>

@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/*
+* TODO : THIS CLASS IS NOT IMPLEMENTED YET IT WOULD BE USE IN SETTING OPTION IN APPLICATION.
+* */
+
 public class Settings extends AppCompatActivity {
     TextView fullname,email;
     Button edit_profile;

@@ -3,7 +3,6 @@ package com.example.axay.o2hleave;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -12,11 +11,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +31,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.axay.o2hleave.model.department_pojo;
+import com.example.axay.o2hleave.model.team_pojo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,13 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     String selected_team_id;
     Bitmap bitmap;
     String encodedImage;
-    //Volley RequestQue
-    RequestQueue requestQueue_dept,getRequestQueue_team,requestQueue_register;
-
-
-
-
-
+    RequestQueue requestQueue_dept,getRequestQueue_team,requestQueue_register;      //Volley RequestQue
     EditText full_name, e_mail, password,employee_code,designation;
     Button register;
     Spinner department_spinner,team_spinner;
@@ -85,13 +77,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        //defining porgressdialge
-
-        final ProgressDialog progressDialog =new ProgressDialog(this);
+        final ProgressDialog progressDialog =new ProgressDialog(this);  //progress dialog
         progressDialog.setMessage("Loading Departments");
         progressDialog.show();
-
 
         department_pojo_spinner_data = new ArrayList<>();
         team_pojo_spinner_data = new ArrayList<>();
@@ -104,26 +92,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         designation=(EditText)findViewById(R.id.designation);
         department_spinner=(Spinner)findViewById(R.id.xml_dept_spinner);
         team_spinner=(Spinner)findViewById(R.id.xml_team_spinner);
-        requestQueue_dept= Volley.newRequestQueue(this);
-        getRequestQueue_team= Volley.newRequestQueue(this);
-        requestQueue_register= Volley.newRequestQueue(this);
-
+        requestQueue_dept= Volley.newRequestQueue(this);            //Volley RequestQueue
+        getRequestQueue_team= Volley.newRequestQueue(this);         //Volley RequestQueue
+        requestQueue_register= Volley.newRequestQueue(this);        //Volley RequestQueue
         department_spinner.setOnItemSelectedListener(this);
         team_spinner.setOnItemSelectedListener(this);
-
-
-
-
-
         register=(Button)findViewById(R.id.register);
-
-
-
-            bitmap = (Bitmap) this.getIntent().getParcelableExtra("photo");
-
-
-
-
+        bitmap = (Bitmap) this.getIntent().getParcelableExtra("photo");
         ImageView profile_pic=(ImageView)findViewById(R.id.register_profile);
         profile_pic.setImageBitmap(bitmap);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
@@ -136,38 +111,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         }
-
-
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-
         awesomeValidation.addValidation(this, R.id.fullname, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.email, "[a-zA-Z0-9._-]+@o2h.com", R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.password, "((?=.*[a-z]).{6,20})", R.string.passworderror);
         awesomeValidation.addValidation(this, R.id.employee_code, "((?=.*\\d).{1,4})", R.string.empoyeecodeerror);
         awesomeValidation.addValidation(this, R.id.designation, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.empoyeecodeerror);
 
-
         register.setOnClickListener( this);
 
-
-        //set list of department into the spinner using volley library
-
-
-        arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this,
-               R.layout.spinner_dept_layout,
-                deaprtment_list);
+        /*//============================================================
+        // set list of department into the spinner using volley library
+           =============================================================*/
+        arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, R.layout.spinner_dept_layout, deaprtment_list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
         department_spinner.setAdapter(arrayAdapter);
-        int default_sel =0;
-        //department_spinner.setSelection(Integer.parseInt(selected_dept_id));
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.1.104/leave/public/api/department"
                 , null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
                 progressDialog.dismiss();
                 try {
                     JSONArray jsonArray = response.getJSONArray("data");
@@ -179,23 +143,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         json_dept = jsonObject.getString("department");
                         deaprtment_list.add(json_dept);
                         arrayAdapter.notifyDataSetChanged();
-
                         department_pojo deprt_data = new department_pojo();
-
-
-
                         deprt_data.setId(json_dept_id);
                         deprt_data.setDepartment(json_dept);
-
                         department_pojo_spinner_data.add(deprt_data);
-
-
-
-                        //textView.append( id+" "+ first_name + " " + last_name + "\n");
-
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -207,16 +159,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 Log.d("error", "error from server response");
             }
-        }
-
-        );
-
-
+        });
         requestQueue_dept.add(jsonObjectRequest);
-
-
     }
 
+    /*
+  * ======================================================
+  * Validate input and Register User using volley request
+  * ======================================================
+   */
     private void submitForm() {
         //first validate the form then move ahead
         //if this becomes true that means validation is successfull
@@ -226,27 +177,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             final String user_password = password.getText().toString().trim();
             final String email = e_mail.getText().toString().trim();
             final String user_designation = designation.getText().toString().trim();
-
-
-            String avatar="";
-
-            if(avatar!=null)
-            {
-                avatar = getStringImage(bitmap);
-
-            }
-            else
-            {
-
-                avatar="";
-            }
-
             final String department = selected_dept_id;
             final String team = selected_team_id;
-
             final String emp_code =employee_code.getText().toString().trim();
-
-
 
             Map<String, String> params = new HashMap<String, String>();
             params.put(KEY_USERNAME, first_name);
@@ -261,12 +194,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             System.out.println(json);
             Log.d("error", json.toString());
 
+            final ProgressDialog progressDialog1=new ProgressDialog(this);
+            progressDialog1.setMessage("Registering");
+            progressDialog1.show();
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://192.168.1.104/leave/public/api/users"
                     , json, new Response.Listener<JSONObject>() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                 @Override
                 public void onResponse(JSONObject response) {
+                      progressDialog1.dismiss();
 
                     try {
                         // JSONArray jsonArray=new JSONArray(response);
@@ -276,17 +213,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         //String Code= jsonObject.getString("code");
                         //String message= jsonObject.getString("message");
                         //Toast.makeText(Register.this,Code,Toast.LENGTH_LONG).show();
-
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     Toast.makeText(RegisterActivity.this, response.toString(), Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(RegisterActivity.this,Main3Activity.class);
+                    Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
                     startActivity(intent);
                     finish();
-
                     Log.d("error", "error");
 
                 }
@@ -298,36 +231,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Log.d("error", "error from server response");
                 }
             });
-
-
             requestQueue_register.add(jsonObjectRequest);
-
-
-        }
-
-
-
-
-
-
-
-
-
-    }
-
-
-    //process the data further
-
-
-
-
-
-
-    public void onClick(View view) {
-        if (view == register) {
-
-
-            submitForm();
 
             SharedPreferences sharedPreferences =getApplicationContext().getSharedPreferences("UserData",MODE_PRIVATE);
             SharedPreferences.Editor editor =sharedPreferences.edit();
@@ -340,33 +244,25 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home)
-        {
-            finish();
+    //process the data further
+    public void onClick(View view) {
+        if (view == register) {
+            submitForm();
         }
-        return super.onOptionsItemSelected(item);
     }
 
+    /*
+ * ==============================================================================================================================
+ *   when i will select any department from one spinner it will call team from api accordingly and show into another team spinner
+ * ==============================================================================================================================
+   */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
-        final ProgressDialog progressDialog1= new ProgressDialog(this);
-        //progressDialog1.setMessage("Loading Team");
-        // progressDialog1.show();
-
-
-
         switch(parent.getId()){
             case R.id.xml_dept_spinner :
 
-
                 selected_dept_id =department_pojo_spinner_data.get(position).getId();
-                arrayAdapter_team = new ArrayAdapter<String>(RegisterActivity.this,
-                        R.layout.spinner_team_layout,
-                        team_list);
+                arrayAdapter_team = new ArrayAdapter<String>(RegisterActivity.this, R.layout.spinner_team_layout, team_list);
                 arrayAdapter_team.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                 team_spinner.setAdapter(arrayAdapter_team);
 
@@ -374,8 +270,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         , null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
-
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
 
@@ -388,27 +282,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 arrayAdapter_team.notifyDataSetChanged();
 
                                 team_pojo teamJson = new team_pojo();
-
                                 teamJson.setId(json_team_id);
                                 teamJson.setTeam(json_team);
-
-
                                 team_pojo_spinner_data.add(teamJson);
-
-
-
-                                //textView.append( id+" "+ first_name + " " + last_name + "\n");
-
                             }
-
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -416,17 +296,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         Log.d("error", "error from server response");
                     }
-                }
-
-                );
-
-
+                });
                 getRequestQueue_team.add(jsonObjectRequest1);
-
-
-
-
-
 
                 Toast.makeText(getApplicationContext(),"method called  " +selected_dept_id,Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(),"method called  " +Department_url+selected_dept_id,Toast.LENGTH_LONG).show();
@@ -434,43 +305,49 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
                 case R.id.xml_team_spinner :
 
-
                 selected_team_id= team_pojo_spinner_data.get(position).getId();
                 Toast.makeText(getApplicationContext(),"team called  " +selected_team_id,Toast.LENGTH_LONG).show();
 
-
                 break;
         }
-
-
     }
-
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public void onNothingSelected(AdapterView<?> parent) {}
 
-    }
-
-
-public String getStringImage(Bitmap bmp){
-
+    /*
+  * =============================================
+  *   Converts the Image into Base64 String
+  * =============================================
+    */
+    public String getStringImage(Bitmap bmp){
     if(bmp !=null)
-      {
-
+       {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
        encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
         }
-
         else
     {
         encodedImage="";
-
     }
     return encodedImage;
-}
+  }
 
-
-
+    /*
+   * =============================================
+   * finish Activity on back button
+   * =============================================
+    */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+            Intent intent =new Intent(RegisterActivity.this,LoginActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

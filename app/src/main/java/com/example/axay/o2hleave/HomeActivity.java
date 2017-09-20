@@ -17,8 +17,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-                 signUp=(Button)findViewById(R.id.home_register);
-                signin=(Button)findViewById(R.id.home_login);
+
+        signUp=(Button)findViewById(R.id.home_register);
+        signin=(Button)findViewById(R.id.home_login);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
-
 
     public  void Onclicklogin()
     {

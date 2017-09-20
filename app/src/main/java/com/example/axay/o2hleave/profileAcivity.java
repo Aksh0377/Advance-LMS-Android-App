@@ -1,14 +1,16 @@
 package com.example.axay.o2hleave;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -31,17 +33,30 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.axay.o2hleave.model.department_pojo;
+import com.example.axay.o2hleave.model.profile_pojo;
+import com.example.axay.o2hleave.model.team_pojo;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class profileAcivity extends AppCompatActivity  implements  Spinner.OnItemSelectedListener {
 
+/*
+Author : Axay Soni
+Class : profileActivity
+Desc : For the User Profile
+working : get User Data on oncreate method using "Volley Library".
+Data : image (imageview), Firstname (Editext), Email (Editext), department (Edittext), department(Spinner), team (Edittext), team(Spinner),
+       Designation(Edittext) , password (Edittext)
+ */
+
+public class profileAcivity extends AppCompatActivity  implements  Spinner.OnItemSelectedListener {
 
     public String Department_url = "http://192.168.1.104/leave/public/api/department/";
     public static final String KEY_USERNAME = "first_name";
@@ -60,8 +75,8 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
     String selected_team_id;
     Bitmap bitmap;
     Bitmap bitmap1;
-
-
+    String encodedImage;
+    TextView profile_dept_tv,profile_team_tv;
     //profile data
     String profile_id = null;
     String profile_name = null;
@@ -69,19 +84,14 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
     String profile_designation = null;
     String profile_avtar = null;
     String profile_employee_code = null;
-
-
     //Volley Request
     RequestQueue requestQueue_update, requestQueue_get_dept, requestQueue_get_team, requestQueue_getprofile;
-
-    ImageView profile_pic;
+    ImageView profile_pic =null;
     ImageButton selectImage;
-
     private static EditText name, email, employee_code, designation, password;
     Spinner spinner_department, spinner_team;
-    Button update_profile;
+    Button update_profile, edit_dep;
     private int Request_code = 1;
-
     ArrayList<department_pojo> department_pojo_spinner_data;
     ArrayList<team_pojo> team_pojo_spinner_data;
     ArrayList<String> deaprtment_list;
@@ -89,14 +99,26 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
     ArrayAdapter<String> arrayAdapter;
     ArrayAdapter<String> arrayAdapter_team;
     profile_pojo.DataBean p_pojo;
+    String s;  // it stores the users_id of logged in user.
 
+   /*
+  * =============================================
+  * OnCreate method
+  * =============================================
+   */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_acivity);
 
-        //progress dialoge
+        //getting user_id from login Activity
+        Intent intent=this.getIntent();
+        if(intent !=null)
+            s = intent.getStringExtra("User_id");
+        Toast.makeText(this,s,Toast.LENGTH_LONG).show();
+        //!getting user_id from login Activity ends here!
+
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Departments");
         progressDialog.show();
@@ -106,14 +128,9 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
         progressDialog1.show();
 
         selectImage = (ImageButton) findViewById(R.id.select_profile);
-        Bitmap bitmap = (Bitmap) this.getIntent().getParcelableExtra("photo");
         profile_pic = (ImageView) findViewById(R.id.profile_picture);
         profile_pic.setImageBitmap(bitmap1);
-
-
-          p_pojo = new profile_pojo.DataBean();
-
-
+        p_pojo = new profile_pojo.DataBean();
         department_pojo_spinner_data = new ArrayList<>();
         team_pojo_spinner_data = new ArrayList<>();
         deaprtment_list = new ArrayList<>();
@@ -126,24 +143,25 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
         spinner_department = (Spinner) findViewById(R.id.edit_spinner_dept);
         spinner_team = (Spinner) findViewById(R.id.edit_spinner_team);
         update_profile = (Button) findViewById(R.id.update);
+        edit_dep = (Button) findViewById(R.id.edit_dept);
         requestQueue_update = Volley.newRequestQueue(this);
         requestQueue_get_dept = Volley.newRequestQueue(this);
         requestQueue_get_team = Volley.newRequestQueue(this);
         requestQueue_getprofile = Volley.newRequestQueue(this);
-
-
+        profile_dept_tv=(TextView)findViewById(R.id.profile_dept_name);
+        profile_team_tv=(TextView)findViewById(R.id.profile_team_name);
         spinner_department.setOnItemSelectedListener(this);
         spinner_team.setOnItemSelectedListener(this);
-
 
         update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Update_profile();
-
             }
         });
+
+        SharedPreferences sharedPreferences=getSharedPreferences("userID",MODE_PRIVATE);
+        s= sharedPreferences.getString("id","null");
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar3);
@@ -155,40 +173,45 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
         getSupportActionBar().setHomeAsUpIndicator(upArrow);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         }
 
-
         //selecting image from the gallery
-
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "select_picture"), Request_code);
+
+                if(profile_pic.getDrawable() == null)
+                {
+                   selectprofile_null();
+                }
+                else
+                {
+                    selectprofile();
+                }
+
             }
         });
 
+        edit_dep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profile_dept_tv.setVisibility(View.GONE);
+                profile_team_tv.setVisibility(View.GONE);
+                spinner_department.setVisibility(View.VISIBLE);
+                edit_dep.setVisibility(View.GONE);
+            }
+        });
 
-
-
-
-        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, "http://192.168.1.104/leave/public/api/users/1"
+        //  Volley Request to get user data and show it into the profile Activity
+        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, "http://192.168.1.104/leave/public/api/users/"+s
                 , null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
                 progressDialog1.dismiss();
-
 
                 try {
                     JSONArray jsonArray = response.getJSONArray("data");
-
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
-
 
                         profile_id = jsonObject.getString("identity");
                         profile_name = jsonObject.getString("first_name").toString();
@@ -198,14 +221,15 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
                         profile_designation = jsonObject.getString("user_designation").toString();
                         designation.setText(profile_designation);
                         String base64Content = jsonObject.getString("avatar");
-                        byte[] bytes = Base64.decode(base64Content, Base64.DEFAULT);
-                        bitmap1 = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                       profile_pic.setImageBitmap(bitmap1);
+                        Picasso.with(getApplicationContext()).load(base64Content).into(profile_pic);
                         profile_employee_code = jsonObject.getString("employee_code").toString();
-                       employee_code.setText(profile_employee_code);
+                        employee_code.setText(profile_employee_code);
+                        String dept_name =jsonObject.getJSONObject("department").getJSONObject("data").getString("department").toString();
+                        profile_dept_tv.setText(dept_name);
+                        String team_name =jsonObject.getJSONObject("team").getJSONObject("data").getString("team").toString();
+                        profile_team_tv.setText(team_name);
 
-                        Toast.makeText(getApplicationContext(), profile_name, Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(getApplicationContext(), profile_name, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -217,25 +241,14 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
 
                 Log.d("error", "error from server response");
             }
-        }
-
-        );
-
-
+        });
         requestQueue_getprofile.add(jsonObjectRequest1);
 
+
         //get json data into spinner
-        arrayAdapter = new ArrayAdapter<String>(profileAcivity.this,
-                R.layout.spinner_dept_layout,
-                deaprtment_list);
+        arrayAdapter = new ArrayAdapter<String>(profileAcivity.this, android.R.layout.simple_spinner_item, deaprtment_list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
         spinner_department.setAdapter(arrayAdapter);
-        int default_sel = 0;
-        //department_spinner.setSelection(Integer.parseInt(selected_dept_id));
-
-
-
-
 
         //Volley request to get departments
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.1.104/leave/public/api/department"
@@ -254,21 +267,11 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
                         json_dept = jsonObject.getString("department");
                         deaprtment_list.add(json_dept);
                         arrayAdapter.notifyDataSetChanged();
-
                         department_pojo deprt_data = new department_pojo();
-
-
                         deprt_data.setId(json_dept_id);
                         deprt_data.setDepartment(json_dept);
-
                         department_pojo_spinner_data.add(deprt_data);
-
-
-                        //textView.append( id+" "+ first_name + " " + last_name + "\n");
-
                     }
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -277,130 +280,53 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
                 Log.d("error", "error from server response");
             }
         }
-
         );
-
-
         requestQueue_get_dept.add(jsonObjectRequest);
-
-
-
-
-    //Volley get request to get data of logged in user
-
-
-    //set the fetched data into views
-
-}
-
-
-
-
-
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home)
-        {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == Request_code && resultCode == RESULT_OK && data != null  && data.getData() != null) {
-            Uri uri = data.getData();
-
-            try {
-
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver() ,uri);
-                profile_pic.setImageBitmap(bitmap);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    // this method will call when user click update profile button.
+    /*
+  * =============================================
+  * Update Profile
+  * =============================================
+   */
     public void Update_profile()
     {
         final String first_name = name.getText().toString().trim();
         final String user_password = password.getText().toString().trim();
         final String e_mail = email.getText().toString().trim();
         final String user_designation = designation.getText().toString().trim();
-
-
-        String avatar=null;
-
-        if(avatar!=null)
-        {
-            avatar = getStringImage(bitmap);
-
-        }
-        else
-        {
-
-            avatar="";
-        }
-
         final String department = selected_dept_id;
         final String team = selected_team_id;
-
         final String emp_code =employee_code.getText().toString().trim();
-
-
 
         Map<String, String> params = new HashMap<String, String>();
         params.put(KEY_USERNAME, first_name);
         params.put(KEY_PASSWORD, user_password);
         params.put(KEY_EMAIL, e_mail);
         params.put(KEY_DESIGNATION, user_designation);
-        params.put(AVTAR, avatar);
+        params.put(AVTAR, getStringImage(bitmap));
         params.put(KEY_TEAM, team);
         params.put(KEY_DEPARTMENT, department);
         params.put(EMPLOYEE_CODE, emp_code);
         JSONObject json = new JSONObject(params);
         System.out.println(json);
         Log.d("error", json.toString());
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, "http://192.168.1.104/leave/public/api/users/1"
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, "http://192.168.1.104/leave/public/api/users/"+s
                 , json, new Response.Listener<JSONObject>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(JSONObject response) {
-
                 try {
                     // JSONArray jsonArray=new JSONArray(response);
                     Log.d("ds", response.toString());
                     Toast.makeText(profileAcivity.this, response.toString(), Toast.LENGTH_LONG).show();
-                    // JSONObject jsonObject=jsonArray.getJSONObject(0);
-                    //String Code= jsonObject.getString("code");
-                    //String message= jsonObject.getString("message");
-                    //Toast.makeText(Register.this,Code,Toast.LENGTH_LONG).show();
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 Toast.makeText(profileAcivity.this, response.toString(), Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(profileAcivity.this,Main3Activity.class);
-                startActivity(intent);
-                finish();
-
                 Log.d("error", "error");
 
             }
@@ -412,39 +338,37 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
                 Log.d("error", "error from server response");
             }
         });
-
-
         requestQueue_update.add(jsonObjectRequest);
-
-
     }
 
-
+    /*
+  * =============================================================================================================================
+  *   when i will select any department from one spinner it will call team from api accordingly and show into another team spinner
+  * ==============================================================================================================================
+    */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         final ProgressDialog progressDialog1= new ProgressDialog(this);
-        //progressDialog1.setMessage("Loading Team");
+        // progressDialog1.setMessage("Loading Team");
         // progressDialog1.show();
-
-
+        // profile_dept_tv.setVisibility(View.GONE);
+        // profile_team_tv.setVisibility(View.GONE);
 
         switch(parent.getId()){
             case R.id.edit_spinner_dept :
 
-
                 selected_dept_id =department_pojo_spinner_data.get(position).getId();
-                arrayAdapter_team = new ArrayAdapter<String>(profileAcivity.this,
-                        R.layout.spinner_team_layout,
-                        team_list);
+                arrayAdapter_team = new ArrayAdapter<String>(profileAcivity.this, android.R.layout.simple_spinner_item, team_list);
                 arrayAdapter_team.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                 spinner_team.setAdapter(arrayAdapter_team);
+                spinner_team.setVisibility(View.VISIBLE);
+
 
                 JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.GET, Department_url+selected_dept_id
                         , null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
 
                         try {
                             JSONArray jsonArray = response.getJSONArray("data");
@@ -456,25 +380,12 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
                                 json_team = jsonObject.getString("team");
                                 team_list.add(json_team);
                                 arrayAdapter_team.notifyDataSetChanged();
-
                                 team_pojo teamJson = new team_pojo();
-
                                 teamJson.setId(json_team_id);
                                 teamJson.setTeam(json_team);
-
-
                                 team_pojo_spinner_data.add(teamJson);
-
-
-
                                 //textView.append( id+" "+ first_name + " " + last_name + "\n");
-
                             }
-
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -490,45 +401,147 @@ public class profileAcivity extends AppCompatActivity  implements  Spinner.OnIte
 
                 );
 
-
                 requestQueue_get_team.add(jsonObjectRequest1);
-
-
-
-
-
-
                 Toast.makeText(getApplicationContext(),"method called  " +selected_dept_id,Toast.LENGTH_LONG).show();
                 Toast.makeText(getApplicationContext(),"method called  " +Department_url+selected_dept_id,Toast.LENGTH_LONG).show();
-
                 break;
-            case R.id.edit_spinner_team :
 
+            case R.id.edit_spinner_team :
 
                 selected_team_id= team_pojo_spinner_data.get(position).getId();
                 Toast.makeText(getApplicationContext(),"team called  " +selected_team_id,Toast.LENGTH_LONG).show();
-
-
                 break;
         }
-
-
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
-    //convert the image into string Base64
+    /*
+  * =============================================
+  *   Converts the Image into Base64 String
+  * ==============================================
+    */
     public String getStringImage(Bitmap bmp){
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        if(bmp !=null)
+        {
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray();
+             encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+            return encodedImage;
+        }
+        else
+        {
+            encodedImage="";
+        }
         return encodedImage;
     }
+
+    /*
+ * ===================================================================
+ * show option to select image from gallery and remove profile picture
+ * ===================================================================
+   */
+    public void selectprofile()
+    {
+        final CharSequence[] options = {  "Choose from Gallery","Remove Profile Picture","Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(profileAcivity.this);
+        builder.setTitle("Add Photo");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "select_picture"), Request_code);
+                }
+                else if (options[item].equals("Remove Profile Picture"))
+                {
+                   profile_pic.setImageDrawable(null);
+
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+    public void selectprofile_null()
+    {
+        final CharSequence[] options = {  "Choose from Gallery","Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(profileAcivity.this);
+        builder.setTitle("Add Photo");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "select_picture"), Request_code);
+                }
+
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == Request_code && resultCode == RESULT_OK && data != null  && data.getData() != null) {
+            Uri uri = data.getData();
+
+            try {
+
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver() ,uri);
+                profile_pic.setImageBitmap(bitmap);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    /*
+  * =============================================
+  * finish Activity on back button
+  * ==============================================
+    */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//
+//        SharedPreferences prefs = getSharedPreferences("X", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putString("lastActivity", getClass().getName());
+//        editor.commit();
+//    }
 
 }
 

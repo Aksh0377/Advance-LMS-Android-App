@@ -19,19 +19,23 @@ import java.util.Locale;
 
 import static android.R.attr.typeface;
 
+/*
+* Author: Axay R. Soni
+* Desc : this class for Selfie option shown before Register Activity in Android
+* */
 public class SelfieActivity extends AppCompatActivity {
-    Context context;
-     TextView textView;
     private static final int CAMERA_REQUEST = 1888;
-
+    Context context;
+    TextView textView;
     Button skip,get_start;
     ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selfie);
         skip=(Button)findViewById(R.id.skip);
-       skip.setOnClickListener(new View.OnClickListener() {
+        skip.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                OnclickRegister();
@@ -46,17 +50,17 @@ public class SelfieActivity extends AppCompatActivity {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-
-                } else {
+                }
+                else {
                     cameraIntent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
                 }
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
+
         Typeface face= Typeface.createFromAsset(getAssets(), "fonts/o2hfont.ttf");
         textView.setTypeface(face);
         this.imageView = (ImageView)this.findViewById(R.id.selfie);
-
         imageView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -64,8 +68,8 @@ public class SelfieActivity extends AppCompatActivity {
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-
-                } else {
+                }
+                else {
                     cameraIntent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
                 }
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
@@ -79,7 +83,6 @@ public class SelfieActivity extends AppCompatActivity {
             imageView.setImageBitmap(photo);
             Intent intent=new Intent(SelfieActivity.this,RegisterActivity.class);
             intent.putExtra("photo",photo);
-
             startActivity(intent);
         }
     }

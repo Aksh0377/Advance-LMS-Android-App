@@ -12,7 +12,7 @@
     <Button
         android:id="@+id/home_register"
         android:background="@drawable/btn_bg_normal"
-        android:layout_width="190dp"
+        android:layout_width="@dimen/signup_button_width_homeActivity"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@color/o2hOne"
@@ -36,7 +36,7 @@
     <Button
         android:id="@+id/home_login"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="190dp"
+        android:layout_width="@dimen/signup_button_width_homeActivity"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_bg_white_border"
         android:layout_weight="1"

@@ -23,44 +23,50 @@
     <RelativeLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="197.50dp"
-        android:background="@color/Separator"
+        android:layout_height="@dimen/profile_pic_reltive_layout"
+        android:background="@drawable/profile_background"
         android:orientation="horizontal"
         android:layout_below="@+id/toolbar3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-<ImageView
+<de.hdodenhof.circleimageview.CircleImageView
            android:id="@+id/profile_picture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+           app:civ_border_width="4dp"
+           app:civ_border_color="@color/o2htextOne"
+            android:layout_width="@dimen/Home_screen_o2h_logo"
+            android:layout_height="@dimen/Home_screen_o2h_logo"
             android:layout_gravity="center"
-            android:src="@drawable/pesron_symbol"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="9dp" />
+            android:background="@drawable/default_profile"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/layout1"
+        android:layout_marginTop="0dp"
+        android:layout_above="@+id/update"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp">
+        android:layout_alignParentStart="true">
 
 
         <EditText
             android:id="@+id/edit_ful_name"
+            style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/profile_Activity_text_field"
             android:layout_gravity="center"
             android:drawableLeft="@drawable/pesron_symbol"
             android:drawablePadding="20dp"
-            android:backgroundTint="@color/o2hOne"
+            android:background="@drawable/editext"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="2dp"
             android:hint="full name"
             android:textColorLink="@color/o2hOne"
             android:textCursorDrawable="@color/o2hOne" />
@@ -69,13 +75,16 @@
         <EditText
             android:id="@+id/edit_email"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/profile_Activity_text_field"
             android:layout_gravity="center"
             android:layout_weight="0.73"
             android:drawableLeft="@drawable/email_black"
             android:drawablePadding="20dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/editext"
             android:hint="Email"
-            android:backgroundTint="@color/o2hOne"
             android:textColorLink="@color/o2hOne"
             android:textCursorDrawable="@color/o2hOne" />
 
@@ -83,50 +92,121 @@
         <EditText
             android:id="@+id/edit_employee_code"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/profile_Activity_text_field"
             android:layout_weight="0.76"
-
-            android:backgroundTint="@color/o2hOne"
             android:drawableLeft="@drawable/short_text"
             android:drawablePadding="20dp"
+            android:background="@drawable/editext"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="2dp"
             android:hint="Employee code"
             android:textColorLink="@color/o2hOne" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/profile_dept_name"
+                android:layout_width="300dp"
+                android:layout_height="@dimen/profile_Activity_text_field"
+                android:layout_weight="0.75"
+                android:visibility="visible"
+                android:drawableLeft="@drawable/short_text"
+                android:layout_marginLeft="6dp"
+                android:drawablePadding="20dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/editext"
+                android:hint="Department"
+                android:textSize="16dp"
+                android:textColorLink="@color/o2hOne"
+
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginRight="6dp"
+                android:background="@color/background">
+            <Button
+                android:layout_width="20dp"
+                android:id="@+id/edit_dept"
+                android:background="@drawable/edit_dept"
+                android:layout_height="20dp" />
+            </LinearLayout>
 
         <Spinner
             android:id="@+id/edit_spinner_dept"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="35dp"
+            android:layout_marginRight="6dp"
+            android:drawablePadding="20dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/editext"
+            android:visibility="gone"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/profile_team_name"
+            android:layout_width="300dp"
+            android:layout_height="@dimen/profile_Activity_text_field"
+            android:layout_weight="0.75"
+            android:drawableLeft="@drawable/short_text"
+            android:background="@drawable/editext"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:drawablePadding="20dp"
+            android:layout_marginBottom="2dp"
+            android:hint="team"
+            android:visibility="visible"
+            android:textSize="17dp"
+            />
 
         <Spinner
             android:id="@+id/edit_spinner_team"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            />
+            android:layout_height="@dimen/profile_Activity_text_field"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:drawablePadding="20dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/editext"
+            android:visibility="gone"/>
 
+    </LinearLayout>
 
 
         <EditText
             android:id="@+id/edit_designation"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/profile_Activity_text_field"
             android:layout_weight="0.75"
             android:drawableLeft="@drawable/designation"
+            android:background="@drawable/editext"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="2dp"
             android:drawablePadding="20dp"
             android:hint="Designation"
-            android:backgroundTint="@color/o2hOne"
             android:textColorLink="@color/o2hOne" />
 
 
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/profile_Activity_text_field"
             android:layout_weight="0.75"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="2dp"
             android:drawableLeft="@drawable/lock"
+            android:background="@drawable/editext"
             android:drawablePadding="20dp"
             android:hint="password"
-            android:backgroundTint="@color/o2hOne"
             android:textColorLink="@color/o2hOne" />
 
         </LinearLayout>
@@ -134,10 +214,10 @@
     <Button
         android:id="@+id/update"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/profile_Activity_text_field"
         android:background="@color/o2hOne"
         android:textColor="@color/o2htextOne"
-        android:text="Apply"
+        android:text="Update"
         android:layout_alignParentBottom="true" />
 
     <android.support.design.widget.FloatingActionButton
