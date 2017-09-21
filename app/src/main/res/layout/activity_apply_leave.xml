@@ -158,6 +158,7 @@
     </LinearLayout>
 
 
+
     <ListView
         android:id="@+id/result"
         android:layout_below="@+id/linearLayout2"
@@ -167,10 +168,15 @@
         android:layout_marginBottom="26dp" />
 
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/result"
+        android:weightSum="4"
+        android:orientation="horizontal">
     <Button
         android:id="@+id/apply_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Apply"
@@ -188,7 +194,7 @@
 
     <Button
         android:id="@+id/save_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Save"
@@ -205,9 +211,9 @@
 
     <Button
         android:id="@+id/edit_rec"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:padding="2dp"
         android:background="@drawable/login_button"
         android:text="Select Recipients"
@@ -220,7 +226,7 @@
         android:layout_alignParentBottom="true"
          />
 
-
+    </LinearLayout>
 
 
 </RelativeLayout>
