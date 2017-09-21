@@ -1,0 +1,32 @@
+<resources>
+	<dimen name="apply_leave_reason_text_field">150dp</dimen>
+	<dimen name="leave_count_text_size">45dp</dimen>
+	<dimen name="fab_margin">24dp</dimen>
+	<dimen name="login_screen_button_height">75dp</dimen>
+	<dimen name="h2">45dp</dimen>
+	<dimen name="activity_vertical_margin">24dp</dimen>
+	<dimen name="login_screen_button_width">450dp</dimen>
+	<dimen name="textview_layout_size">168dp</dimen>
+	<dimen name="login_screen_textbox_width">450dp</dimen>
+	<dimen name="apply_leave_edittext_height">105dp</dimen>
+	<dimen name="text_size_1">30dp</dimen>
+	<dimen name="padding">67.5dp</dimen>
+	<dimen name="register_activity_text_field_width">450dp</dimen>
+	<dimen name="text_size_2">60dp</dimen>
+	<dimen name="Home_screen_o2h_logo">225dp</dimen>
+	<dimen name="register_activity_profile_pic">225dp</dimen>
+	<dimen name="profile_pic">225dp</dimen>
+	<dimen name="register_activity_text_field_height">45dp</dimen>
+	<dimen name="apply_leave_edittext_width">90dp</dimen>
+	<dimen name="profile_Activity_text_field">60dp</dimen>
+	<dimen name="profile_pic_reltive_layout">296.2dp</dimen>
+	<dimen name="activity_horizontal_margin">24dp</dimen>
+	<dimen name="login_screen_textbox_height">75dp</dimen>
+	<dimen name="button_text">22.5dp</dimen>
+	<dimen name="appbar_padding_top">12dp</dimen>
+	<dimen name="signup_button_width_homeActivity">285dp</dimen>
+	<dimen name="apply_leave_listview_field">225dp</dimen>
+	<dimen name="h1">60sp</dimen>
+	<dimen name="h3">24sp</dimen>
+	<dimen name="h4">22.5sp</dimen>
+</resources>
