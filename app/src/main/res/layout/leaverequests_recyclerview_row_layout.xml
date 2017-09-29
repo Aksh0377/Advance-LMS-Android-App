@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_marginBottom="2dp"
+        android:elevation="3dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="164dp"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+              <de.hdodenhof.circleimageview.CircleImageView
+                  android:id="@+id/applier_pic"
+                  android:layout_width="40dp"
+                  android:layout_height="40dp"
+                  android:layout_gravity="center"
+                  android:background="@drawable/default_profile"
+                  app:civ_border_color="@color/o2hOne"
+                  />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/xml_requested_leave_applier"
+                android:text="Applier Name "
+                android:paddingLeft="25dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:textSize="16dp"
+                android:textColor="@color/applier_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/xml_requested_leave_type"
+                android:text="Lave Type"
+                android:paddingLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/requested_leave_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/logged_in_user_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+                </LinearLayout>
+          </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/xml_requested_leave_from_date"
+                            android:text="From Date"
+                            android:textSize="14dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/xml_requested_leave_to_date"
+                            android:text="To Date"
+                            android:paddingLeft="5dp"
+                            android:textSize="14dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+            <TextView
+                android:id="@+id/xml_requested_leave_reason"
+                android:text="Reason"
+                android:padding="2dp"
+                android:textSize="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                >
+
+
+                <Button
+                    android:id="@+id/xml_accept_leave"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:background="@color/approve"
+                    android:textSize="12dp"
+                    android:text="Approve"
+                    android:textColor="@color/o2htextOne"/>
+
+                <Button
+                    android:id="@+id/xml_reject_leave"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="70dp"
+                    android:textSize="12dp"
+                    android:text="Reject"
+                    android:background="@color/reject"
+                    android:textColor="@color/o2htextOne"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
